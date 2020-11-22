@@ -7,7 +7,7 @@
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
     <label>itemName:
-      <div>{{hero.itemList[0].name}}</div>
+      <div *ngFor="let item of hero.itemList">{{item.name}}</div>
     </label>
   </div>
 
