@@ -6,8 +6,9 @@
     <label>name:
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
+    <br>
     <label>itemName:
-      <div *ngFor="let item of hero.itemList">{{item.name}}</div>
+      <span *ngFor="let item of hero.itemList">{{item.name}} </span>
     </label>
   </div>
 
