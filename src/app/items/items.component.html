@@ -2,15 +2,7 @@
 <ul class="items">
   <li *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
     <span class="badge">{{item.id}}</span> {{item.name}}
+    <button *ngIf="show && hero.money >= item.price" (click)="buy(item)">BUY</button>
   </li>
 </ul>
-<div *ngIf="selectedItem">
-    <h2>{{selectedItem.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedItem.id}}</div>
-    <div>
-     <label>name:
-      <input [(ngModel)]="selectedItem.name" placeholder="name"/>
-     </label>
-     <div><span>price: </span>{{selectedItem.price}}</div>
-    </div>
-</div>
+<app-item-detail [item]="selectedItem" ></app-item-detail>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../item';
 import { ITEMS } from '../mock-items';
 import { ItemService } from '../item.service';
+import { Hero } from '../hero';
 
 @Component({
   selector: 'app-items',
@@ -9,6 +10,8 @@ import { ItemService } from '../item.service';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
+  @Input() hero: Hero;
+
   items: Item[];
   constructor(private itemService: ItemService) { }
   
@@ -20,8 +23,20 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.getItems();
   }
+
+  @Input() show: boolean;
+
   selectedItem: Item;
+
   onSelect(item: Item): void {
     this.selectedItem = item;
+  }
+
+  buy(item:Item): void {
+    if(this.hero.money >= item.price){
+      this.hero.itemList.push(item);
+      this.hero.money -= item.price;
+
+    }
   }
 }

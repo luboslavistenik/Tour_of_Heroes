@@ -10,6 +10,8 @@
     <label>itemName:
       <span class="comma" *ngFor="let item of hero.itemList">{{item.name}}</span>
     </label>
+    <div>money: {{hero.money}}</div>
   </div>
-
+  <button (click)="click()">SHOP</button>
+  <app-items [hero]="hero" [show]="show" *ngIf="show"></app-items>
 </div>
