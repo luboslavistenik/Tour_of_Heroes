@@ -19,7 +19,9 @@ export class HeroesComponent implements OnInit {
   sortByInternal = {
     Id: { property: 'id', reversed: false },
     Name: { property: 'name', reversed: false },
-    Money: { property: 'money', reversed: true }
+    Money: { property: 'money', reversed: true },
+    Life: { property: 'life', reversed: true },
+    Strength: { property: 'strength', reversed: true },
   };
 
   sortByProperties: string[] = Object.keys(this.sortByInternal);

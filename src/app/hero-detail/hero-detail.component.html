@@ -12,6 +12,8 @@
     </label>
     <div>money: {{hero.money}}</div>
   </div>
+  <div>life: {{hero.life}}</div>
+  <div>strength: {{hero.strength}}</div>
   <button (click)="click()">SHOP</button>
   <button (click)="save()">save</button>
   <app-items [hero]="hero" [show]="show" *ngIf="show"></app-items>
