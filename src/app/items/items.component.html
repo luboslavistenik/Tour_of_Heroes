@@ -1,8 +1,19 @@
 <h2>My Items</h2>
+
+<mat-form-field appearance="fill">
+  <mat-label>Sort by</mat-label>
+  <mat-select (selectionChange)="onSortChanged($event)" value="Id">
+    <mat-option *ngFor="let sort of sortByProperties" [value]="sort">
+      {{sort}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <ul class="items">
   <li *ngFor="let item of items" (click)="onSelect(item)" [class.selected]="item === selectedItem">
     <span class="badge">{{item.id}}</span> {{item.name}}
     <button *ngIf="show && hero.money >= item.price" (click)="buy(item)">BUY</button>
   </li>
 </ul>
+
 <app-item-detail [item]="selectedItem" ></app-item-detail>

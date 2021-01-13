@@ -1,10 +1,31 @@
 <h2>My Heroes</h2>
+<h4>Menu</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Sort by</mat-label>
+    <mat-select (selectionChange)="onSortChanged($event)" value="Id">
+      <mat-option *ngFor="let sort of sortByProperties" [value]="sort">
+        {{sort}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 <ul class="heroes">
   <li *ngFor="let hero of heroes"
     [class.selected]="hero === selectedHero"
     (click)="onSelect(hero)">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <button class="delete" title="delete hero"
+    (click)="delete(hero)">x</button>
   </li>
 </ul>
+
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
 
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>

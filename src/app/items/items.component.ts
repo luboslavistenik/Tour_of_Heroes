@@ -3,6 +3,7 @@ import { Item } from '../item';
 import { ITEMS } from '../mock-items';
 import { ItemService } from '../item.service';
 import { Hero } from '../hero';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-items',
@@ -39,4 +40,23 @@ export class ItemsComponent implements OnInit {
 
     }
   }
+
+  sortByInternal = {
+    Id: { property: 'id', reversed: false },
+    Name: { property: 'name', reversed: false },
+    Price: { property: 'price', reversed: true }
+  };
+
+  sortByProperties: string[] = Object.keys(this.sortByInternal);
+
+  onSortChanged(event: MatSelectChange): void {
+    const sortInfo = this.sortByInternal[event.value];
+    const property = sortInfo.property;
+
+    this.items.sort((a,b) => {
+      const compared: number = a[property] > b[property] ? 1 : -1;
+      return sortInfo.reversed ? -compared : compared;
+    });
+  }
+
 }
