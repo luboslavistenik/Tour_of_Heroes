@@ -1,0 +1,28 @@
+{{heroFormGroup.value|json}}
+<div class="form-group" >
+    <form (ngSubmit)="onSubmit()" [formGroup]="heroFormGroup">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" required
+         class="form-control">
+    
+        <label for="item">Hero's Item</label>
+        <select  class="form-control">
+        <option *ngFor="let item of items" [value]="item">{{item.name}}</option>
+        </select>
+
+        <label for="money">Money</label>
+        <input type="text" class="form-control" required
+        formControlName="money">
+
+        <label for="life">Life</label>
+        <input type="text" formControlName="life" class="form-control" 
+         name="life" required>
+         
+
+        <label for="strength">Strength</label>
+        <input type="text" class="form-control" formControlName="strength"
+            name="strength" required>
+
+        <button type="submit" class="btn btn-success" [disabled]="!heroFormGroup.valid">Submit</button>
+    </form>
+</div>

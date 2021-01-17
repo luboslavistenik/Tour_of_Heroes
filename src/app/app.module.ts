@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -16,6 +16,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSelectModule} from '@angular/material/select';
+import { HeroFormComponent } from './hero-form/hero-form.component';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 
 
@@ -29,10 +31,13 @@ import {MatSelectModule} from '@angular/material/select';
     DashboardComponent,
     ItemDetailComponent,
     HeroSearchComponent,
+    HeroFormComponent,
+    ItemFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
