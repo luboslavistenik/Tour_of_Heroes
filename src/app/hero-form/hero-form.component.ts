@@ -48,7 +48,18 @@ export class HeroFormComponent {
   getItems():void {
     this.itemService.getItems().subscribe(items => this.items = items);
   }
+
+  get name() {
+    return this.heroFormGroup.get('name');
+  }
+  get life() {
+    return this.heroFormGroup.get('life');
+  }
+  get strength() {
+    return this.heroFormGroup.get('strength');
+  }
 }
+
 function numberFromTo(from:number, to:number): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
     const number: number = +control.value;
@@ -56,5 +67,3 @@ function numberFromTo(from:number, to:number): ValidatorFn {
     return inRange ? null : {number: {value: number}};
   };
 }
-
-

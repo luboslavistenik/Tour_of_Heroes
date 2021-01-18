@@ -2,8 +2,11 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="heroFormGroup">
         <label for="name">Name</label>
         <input type="text" formControlName="name" required
-         class="form-control" >
-
+         class="form-control">
+        <div *ngIf="name.invalid"
+            class="alert alert-danger">
+            Name is required or it has more than 20 characters
+        </div>
     
 
         <label for="money">Money</label>
@@ -13,11 +16,18 @@
         <label for="life">Life</label>
         <input type="text" formControlName="life" class="form-control" 
          name="life" required>
+         <div *ngIf="life.invalid"
+            class="alert alert-danger">
+            You have to choose the amount of lifes ! (1-200)
+        </div>
          
-
         <label for="strength">Strength</label>
         <input type="text" class="form-control" formControlName="strength"
             name="strength" required>
+        <div *ngIf="strength.invalid"
+            class="alert alert-danger">
+            You have to choose the amount of strength ! (1-50)
+        </div>
 
         <button type="submit" class="btn btn-success" [disabled]="heroFormGroup.invalid">Submit</button>
     </form>
