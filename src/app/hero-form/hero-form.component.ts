@@ -19,14 +19,11 @@ export class HeroFormComponent {
 
   heroFormGroup: FormGroup;
 
-  model: Hero = { name:'', itemList:[], money:0, life:0,strength:0 };
-
   constructor(private itemService:ItemService, private heroService:HeroService, private router:Router){}
   ngOnInit(): void {
     this.heroFormGroup = new FormGroup({
       name: new FormControl('',[Validators.maxLength(20), Validators.required]),
       life: new FormControl('',[numberFromTo(1,200), Validators.required]),
-      itemList: new FormControl([], Validators.required),
       strength: new FormControl('',[numberFromTo(1,50), Validators.required]),
       money: new FormControl('', [Validators.required])
     })
@@ -35,9 +32,17 @@ export class HeroFormComponent {
 
   
   onSubmit() { 
-    if (this.heroFormGroup.valid){
-    this.heroService.addHero(this.model).subscribe();
-    this.router.navigate(['/heroes'])}
+    const controls = this.heroFormGroup.controls;
+    const hero : Hero = {
+      name: controls.name.value,
+      life: controls.life.value,
+      strength: controls.strength.value,
+      money: controls.money.value,
+      itemList: []
+    }
+
+    this.heroService.addHero(hero).subscribe();
+    this.router.navigate(['/heroes'])
   }
   
   getItems():void {

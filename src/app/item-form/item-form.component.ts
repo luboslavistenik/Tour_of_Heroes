@@ -21,17 +21,18 @@ export class ItemFormComponent implements OnInit {
       price: new FormControl('',[numberFromTo(1,4000), Validators.required]),
     })}
 
-    onSubmit() { 
-      if (this.itemFormGroup.valid){
-      this.itemService.addItem({name:this.itemFormGroup.controls.name.value, price:this.itemFormGroup.controls.price.value}).subscribe();
-      this.router.navigate(['/items'])}
+  onSubmit() { 
+    const controls = this.itemFormGroup.controls;
+    const item : Item = {
+      name: controls.name.value,
+      price: controls.price.value
     }
-
-    
-}
-function numberFromTo(from:number, to:number): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
-    const number: number = +control.value;
-    const inRange: boolean = number <= to && number >= from;
-    return inRange ? null : {number: {value: number}};
-  }};
+    this.itemService.addItem(item).subscribe();
+    this.router.navigate(['/items'])} 
+  }
+  function numberFromTo(from:number, to:number): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const number: number = +control.value;
+      const inRange: boolean = number <= to && number >= from;
+      return inRange ? null : {number: {value: number}};
+    }};

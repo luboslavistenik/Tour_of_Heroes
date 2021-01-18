@@ -8,5 +8,6 @@
         <label for="price">Price</label>
         <input type="number" class="form-control" required
         formControlName="price">
+        <button type="submit" class="btn btn-success" [disabled]="itemFormGroup.invalid">Submit</button> 
     </form>
 </div>

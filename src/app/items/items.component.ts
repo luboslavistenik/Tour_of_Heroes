@@ -4,6 +4,7 @@ import { ITEMS } from '../mock-items';
 import { ItemService } from '../item.service';
 import { Hero } from '../hero';
 import { MatSelectChange } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +15,7 @@ export class ItemsComponent implements OnInit {
   @Input() hero: Hero;
 
   items: Item[];
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService, private router:Router) { }
   
   getItems(): void {
     this.itemService.getItems()
@@ -57,6 +58,10 @@ export class ItemsComponent implements OnInit {
       const compared: number = a[property] > b[property] ? 1 : -1;
       return sortInfo.reversed ? -compared : compared;
     });
+  }
+
+  onClick() {
+    this.router.navigate(['/itemForm'])
   }
 
 }
